@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function titelsophalen() {
-            fetch("http://localhost:8082/Alletitels")
+        function reserveringenophalen() {
+            fetch("http://localhost:8082/alleReserveringen")
                 .then(a => a.json())
                 .then(b => console.log(b))
+                
         }
 
     </script>
@@ -18,7 +19,7 @@
 </head>
 
 <body>
-    <button onclick="titelsophalen()">Titels ophalen</button>
+    <button onclick="reserveringenophalen()">Titels ophalen</button>
     <div id="uitkomst"></div>
 
 </body>
