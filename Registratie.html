@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registratie formulier</title>
+    <script>
+        
+        function registreren() {
+            var voornaam = document.getElementById("voornaam").value;
+            var achternaam = document.getElementById("achternaam").value;
+            var emailadres = document.getElementById("emailadres").value;
+            var wachtwoord = document.getElementById("wachtwoord").value;
+            fetch("http://localhost:8082/registratie/" + voornaam + "/" + achternaam + "/" + emailadres + "/" + wachtwoord)
+            alert()
+        }
+
+    </script>
+    <style></style>
+</head>
+
+<body>
+    <h1>Registratie formulier</h1>
+        Voornaam: <br><input type="text" id="voornaam">
+        <br>
+        Achternaam: <br><input type="text" id="achternaam">
+        <br>
+        Email adres: <br><input type="text" id="emailadres">
+        <br>
+        Wachtwoord: <br><input type="password" id="wachtwoord">
+        <br>
+    <button onclick="registreren()">Registreer</button>
+
+    <div id="uitkomst"></div>
+
+</body>
+
+</html>
