@@ -8,18 +8,39 @@
     <title>Document</title>
     <script>
         function titelsophalen() {
-            fetch("http://localhost:8082/Alletitels")
+            fetch("http://localhost:8082/alletitels")
                 .then(a => a.json())
-                .then(b => console.log(b))
+                .then(b => tonenOpScherm(b))
         }
-
+        function tonenOpScherm(lijst) {
+            var dom = document.getElementsByTagName("html");
+            console.log(dom);
+            for(var x = 0; x < lijst.length; x++){
+                document.getElementById("aankomst").innerHTML+= `<h1>${lijst[x].auteur} - ${lijst[x].titelNaam}</h1>`;
+                if(lijst[x].id == 2){
+                    document.getElementById("qqq").style.backgroundColor="orange";
+                }
+            }
+        }
+        function opslaan() {
+            var auteurnaam = document.getElementById("invoer").value;
+            fetch("http://localhost:8082/opslaan/" + auteurnaam);
+        }
     </script>
-    <style></style>
+    <style>
+        div{
+
+            border:2px solid red;
+        }
+    </style>
 </head>
 
 <body>
-    <button onclick="titelsophalen()">Titels ophalen</button>
-    <div id="uitkomst"></div>
+    <button id=qqq onclick="titelsophalen()">Titels ophalen</button>
+    <div id="uitkomst">abc</div>
+    <div id="aankomst">def</div>
+    <input type="text" id="invoer"></input>
+    <button onclick="opslaan()">klik hier</button>
 
 </body>
 
