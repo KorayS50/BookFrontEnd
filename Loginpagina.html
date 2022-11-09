@@ -11,9 +11,7 @@
         function inloggen() {
             var emailadres = document.getElementById("emailadres").value;
             var wachtwoord = document.getElementById("wachtwoord").value;
-            fetch("http://localhost:8082/login/" + emailadres + "/" + wachtwoord);
-            alert()
-        }
+            if(fetch("http://localhost:8082/login/" + emailadres + "/" + wachtwoord));
 
     </script>
     <style></style>
@@ -21,10 +19,12 @@
 
 <body>
     <h1>Login</h1>
+    <form action="/login" method=""POST>
         Email adres: <br><input type="text" id="emailadres">
         <br>
         Wachtwoord: <br><input type="password" id="wachtwoord">
         <br>
+    </form>
     <button onclick="inloggen()">Login</button>
 
     <div id="uitkomst"></div>
