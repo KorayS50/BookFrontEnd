@@ -6,26 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login pagina</title>
-    <script>
-        
-        function inloggen() {
-            var emailadres = document.getElementById("emailadres").value;
-            var wachtwoord = document.getElementById("wachtwoord").value;
-            fetch("http://localhost:8082/login/" + emailadres + "/" + wachtwoord);
-            alert()
-        }
-
-    </script>
     <style></style>
 </head>
 
 <body>
     <h1>Login</h1>
-        Email adres: <br><input type="text" id="emailadres">
+
+    <form action="http://localhost:8082/login" id="loginForm" method="POST">
+        Email adres: <br><input type="text" id="email" name="email" required>
         <br>
-        Wachtwoord: <br><input type="password" id="wachtwoord">
+        Wachtwoord: <br><input type="password" id="wachtwoord" name="wachtwoord" required>
         <br>
-    <button onclick="inloggen()">Login</button>
+        <input type="submit" id="login" value="login">
+    </form>
 
     <div id="uitkomst"></div>
 
