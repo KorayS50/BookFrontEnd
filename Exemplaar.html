@@ -8,10 +8,20 @@
     <script>
         function ExemplarenOphalen(){
             fetch("http://localhost:8082/AlleExemplaren")
-            .then(a=>a.json())
-            .then(b=>console.log(b))
+            .then(a => a.json())
+            .then(b => tonenOpScherm(b))
         }
-
+        function tonenOpScherm(lijst){
+            for(var x = 0; x < lijst.length; x++){
+                document.getElementById("uitkomst").innerHTML += `<h1>${lijst[x].exemplaarNR} - ${lijst[x].wtcode}</h1>`;
+            }
+        }
+        
+        function opslaan(){
+            var wt = document.getElementById("invoer").value;
+            fetch("http://localhost:8082/opslaan/" + wt)
+            alert()
+        }
     </script>
     <style>
         </style>
@@ -20,5 +30,8 @@
     <button onclick="ExemplarenOphalen()">Exemplaren ophalen</button>
     <div id="uitkomst"></div>
     
+
+    <input type="text" id="invoer"></input>
+    <button onclick="opslaan()">Invoeren maar</button>
 </body>
 </html>

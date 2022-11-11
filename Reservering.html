@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #hiddenEmail {
+            visibility: hidden;
+        }
+    </style>
     <script>
         function reserveringenophalen() {
             fetch("http://localhost:8082/alleReserveringen")
@@ -14,13 +19,38 @@
                 
         }
 
+        function mijnReserveringenOphalen() {
+            var emailadres = document.getElementById("hiddenEmail").innerHTML;
+            fetch("http://localhost:8082/mijnreserveringen/" + emailadres)
+            .then(a => a.json())
+            .then(b => reserveringenTonenOpScherm(b))
+        }
+        function reserveringenTonenOpScherm(lijst){
+            if (lijst.length > 0){
+                document.getElementById("LijstTitel").innerHTML = "Mijn reserveringen";
+                for(var x = 0; x < lijst.length; x++){
+                    document.getElementById("ReserveringenLijst").innerHTML += `<li>${lijst[x].gereserveerdOp}: ${lijst[x].titel.titelNaam} door ${lijst[x].titel.auteur}</li>`;
+                }
+            } else {
+                document.getElementById("LijstTitel").innerHTML = "Je hebt geen lopende reservingen.";
+            }
+        }
+
     </script>
     <style></style>
 </head>
 
 <body>
     <button onclick="reserveringenophalen()">Titels ophalen</button>
-    <div id="uitkomst"></div>
+    <br>
+    <br>
+    <button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>
+    <br>
+    <br>
+    <div id="LijstTitel"></div>
+    <ul id="ReserveringenLijst">
+    </ul>
+    <div id="hiddenEmail">ronkraaijenbeld@gmail.com</div>
 
 </body>
 
