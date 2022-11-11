@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="css/loginpagina.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login pagina</title>
     <script>
-        
+
         function inloggen() {
             var emailadres = document.getElementById("emailadres").value;
             var wachtwoord = document.getElementById("wachtwoord").value;
@@ -18,15 +19,20 @@
 </head>
 
 <body>
+    <div class="login-wrapper">
     <h1>Login</h1>
+    <div class="box">
     <form action="/login" method=""POST>
-        Email adres: <br><input type="text" id="emailadres">
+        Email-adres: <br><input type="text" id="emailadres">
         <br>
         Wachtwoord: <br><input type="password" id="wachtwoord">
         <br>
     </form>
+    <div class="knop">
     <button onclick="inloggen()">Login</button>
-
+    </div>
+    </div>
+    </div>
     <div id="uitkomst"></div>
 
 </body>
