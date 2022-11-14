@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <!-- INCLUDING JQUERY-->
+    <script src=
+"https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+    
+<body>
+    <section>
+        <h1>Alle Gebruikers</h1>
+  
+        <!-- TABLE CONSTRUCTION-->
+        <table id='table'>
+            <!-- HEADING FORMATION -->
+            <tr>
+                <th>GebruikersId</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Emailadres</th>
+                <th>Wachtwoord</th>
+                <th>Is_admin?</th>
+                <th>In_dienst?</th>
+            </tr>
+  
+            <script>
+                $(document).ready(function () {
+  
+                    // FETCHING DATA FROM JSON FILE
+                    $.getJSON("http://localhost:8082/toonAlleGebruikers", 
+                            function (data) {
+                        var gebruiker = '';
+  
+                        // ITERATING THROUGH OBJECTS
+                        $.each(data, function (key, value) {
+  
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            gebruiker += '<tr>';
+
+                            gebruiker += '<td>' + 
+                                value.gebruikerID + '</td>';
+  
+                            gebruiker += '<td>' + 
+                                value.voornaam + '</td>';
+  
+                            gebruiker += '<td>' + 
+                                value.achternaam + '</td>';
+  
+                            gebruiker += '<td>' + 
+                                value.email + '</td>';
+
+                            gebruiker += '<td>' + 
+                                value.wachtwoord + '</td>';    
+
+                            gebruiker += '<td>' + 
+                                value.admin + '</td>';  
+
+                            gebruiker += '<td>' + 
+                                value.inDienst + '</td>';
+                            gebruiker += '</tr>';
+                        });
+                          
+                        //INSERTING ROWS INTO TABLE 
+                        $('#table').append(gebruiker);
+                    });
+                });
+            </script>
+    </section>
+</body>
+</html>
