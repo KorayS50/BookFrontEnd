@@ -8,24 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login pagina</title>
     <script>
-        function redirectToWelkom(){
-            window.location.replace("Welkomstpagina.html");
-        }
-    </script>
-</head>
-
-<body>
-    <div class="login-wrapper">
-        <h1>Login</h1>
-
-        Email adres: <br><input type="text" id="email" name="email" required>
-        <br>
-        Wachtwoord: <br><input type="password" id="password" name="password" required>
-        <br>
-        <input onclick="login()" type="button" id="login" value="login">
-    </div>
-
-    <script>
         function login() {
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
@@ -52,7 +34,7 @@
                 } else {
                     localStorage.setItem('TOKEN', antwoord.token);
 
-                    window.location.href = 'Reservering.html';
+                    window.location.href = 'Landingpage.html';
                 }
             })
             .catch(error => {
@@ -60,6 +42,24 @@
             });
         }
     </script>
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <h1>Login</h1>
+
+        Email adres: <br><input type="text" id="email" name="email" required>
+        <br>
+        Wachtwoord: <br><input type="password" id="password" name="password" required>
+        <br>
+        <input onclick="login()" type="button" id="login" value="login">
+        <div>
+            Nog geen account? Klik hier:<br>
+            <button onclick="window.location.href='Registratie.html';" value="Registreer">Registreer</button>
+        </div>
+    </div>
+
+    
 </body>
 
 </html>
