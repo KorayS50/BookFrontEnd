@@ -8,29 +8,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login pagina</title>
     <script>
-        function redirectToWelkom(){
-            window.location.replace("Welkomstpagina.html");
+        function login() {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            let loginDto = {
+                email: email,
+                password: password
+            }
+
+            fetch("http://localhost:8082/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginDto)
+            })
+            .then(response => response.json())
+            .then(antwoord => {
+                // alert(antwoord.success);
+                // alert(antwoord.token);
+
+                if (!antwoord.success) {
+                    alert('Foute inlog gegevens');
+                } else {
+                    localStorage.setItem('TOKEN', antwoord.token);
+
+                    window.location.href = 'Landingpage.html';
+                }
+            })
+            .catch(error => {
+                alert('Er is iets fouts gegaan');
+            });
         }
     </script>
 </head>
 
 <body>
     <div class="login-wrapper">
-    <h1>Login</h1>
-    <div class="box">
-    <form action="http://localhost:8082/login" id="loginForm" method="POST">
+        <h1>Login</h1>
+
         Email adres: <br><input type="text" id="email" name="email" required>
         <br>
-        Wachtwoord: <br><input type="password" id="wachtwoord" name="wachtwoord" required>
+        Wachtwoord: <br><input type="password" id="password" name="password" required>
         <br>
-        <input onclick="redirectToWelkom()" type="submit" id="login" value="login">
-    </form>
-    <button onclick="redirectToWelkom()" name="testredirect">clicky</button>
-    <div class="knop">
-    </div>
-    </div>
+        <input onclick="login()" type="button" id="login" value="login">
+        <div>
+            Nog geen account? Klik hier:<br>
+            <button onclick="window.location.href='Registratie.html';" value="Registreer">Registreer</button>
+        </div>
     </div>
 
+    
 </body>
 
 </html>

@@ -9,12 +9,41 @@
     <script>
         
         function registreren() {
-            var voornaam = document.getElementById("voornaam").value;
-            var achternaam = document.getElementById("achternaam").value;
-            var emailadres = document.getElementById("emailadres").value;
-            var wachtwoord = document.getElementById("wachtwoord").value;
-            fetch("http://localhost:8082/registratie/" + voornaam + "/" + achternaam + "/" + emailadres + "/" + wachtwoord)
-            alert()
+            let voornaam = document.getElementById("voornaam").value;
+            let achternaam = document.getElementById("achternaam").value;
+            let emailadres = document.getElementById("emailadres").value;
+            let wachtwoord = document.getElementById("wachtwoord").value;
+
+            let RegistratieDto = {
+                voornaam: voornaam,
+                achternaam: achternaam,
+                email: emailadres,
+                password: wachtwoord
+            }
+
+            fetch("http://localhost:8082/registratie", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(RegistratieDto)
+            })
+            .then(response => response.json())
+            .then(antwoord => {
+                
+                if (!antwoord.success) {
+                    alert('Emailadres is al in gebruik');
+                } else {
+                    alert('Registratie voltooid, na sluiten van dit bericht wordt U over 3 seconden naar de inlog pagina geleid');
+                    var timer = setTimeout(function() {
+                    window.location.href='Loginpagina.html';
+                    }, 3000);
+                }
+            })
+            .catch(error => {
+                alert('Er is iets fouts gegaan');
+            });
+            
         }
 
     </script>
@@ -23,17 +52,17 @@
 
 <body>
     <h1>Registratie formulier</h1>
-        Voornaam: <br><input type="text" id="voornaam">
+        Voornaam: <br><input type="text" id="voornaam" required>
         <br>
-        Achternaam: <br><input type="text" id="achternaam">
+        Achternaam: <br><input type="text" id="achternaam" required>
         <br>
-        Email adres: <br><input type="text" id="emailadres">
+        Email adres: <br><input type="text" id="emailadres" required>
         <br>
-        Wachtwoord: <br><input type="password" id="wachtwoord">
+        Wachtwoord: <br><input type="password" id="wachtwoord" required>
         <br>
-    <button onclick="registreren()">Registreer</button>
-
-    <div id="uitkomst"></div>
+        <input onclick="registreren()" type="button" id="registreer" value="registreer">
+    <br>
+    (Na registratie wordt u terug geleid naar de loginpagina na 3 seconden)
 
 </body>
 
