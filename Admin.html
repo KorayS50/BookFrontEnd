@@ -20,11 +20,11 @@
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="title">Dashboard</span>
+                        <span class="title">Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="AlleGebruikers.html">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                         <span class="title">Trainees</span>
                     </a>
@@ -43,7 +43,61 @@
                 </li>
             </ul>
         </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
     </div>
+
+    <div class="search">
+        <label>
+            <input type="text" placeholder="Search here">
+            <ion-icon name="search-outline"></ion-icon>
+        </label>
+    </div>
+    
+    <div class="user">
+            </div>
+        </div>
+
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">8</div>
+                <div class="cardName">Reserveringen</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="eye-outline"></ion-icon>
+            </div>
+        </div>
+        </div>
+        <div class="details">
+            <div class="recenteOrder">
+                <div class="cardHeader">
+                    <h2>Recent gereserveerd</h2>
+                    <a href="#" class="btn">View All</a>                
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Naam</td>
+                            <td>Boek</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Test Persoon</td>
+                            <td>Java for dummies</td>
+                            <td><span class="status boek">Opgehaald</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+</div>
 
     Links voor homepage
     <br>
@@ -55,6 +109,15 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <script>
+    let toggle = document.querySelector('.toggle');
+    let navigatie = document.querySelector('.navigatie');
+    let main = document.querySelector('.main');
+
+    toggle.onclick = function(){
+        navigatie.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+
     let list = document.querySelectorAll('.navigatie li');
     function activeLink(){
         list.forEach((item) =>
