@@ -31,9 +31,11 @@
 
                 if (!antwoord.success) {
                     alert('Foute inlog gegevens');
-                } else {
+                } else if(antwoord.isAdmin == 1){
                     localStorage.setItem('TOKEN', antwoord.token);
-
+                    window.location.href = 'Admin.html';
+                } else{
+                    localStorage.setItem('TOKEN', antwoord.token);
                     window.location.href = 'Landingpage.html';
                 }
             })
