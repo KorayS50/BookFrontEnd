@@ -47,15 +47,17 @@
 <body>
     <div class="login-wrapper">
         <h1>Login</h1>
-
+        <div class="content">
+            <div class="input-field">
         Email adres: <br><input type="text" id="email" name="email" required>
-        <br>
+        </br>
         Wachtwoord: <br><input type="password" id="password" name="password" required>
+        </div>
+            </div>
         <br>
-        <input onclick="login()" type="button" id="login" value="login">
-        <div>
-            Nog geen account? Klik hier:<br>
-            <button onclick="window.location.href='Registratie.html';" value="Registreer">Registreer</button>
+        <div class="action">
+        <button onclick="login()" type="button" id="login" value="login">Login</button>
+        <button onclick="window.location.href='Registratie.html';" value="Registreer">Registreer</button>
         </div>
     </div>
 
