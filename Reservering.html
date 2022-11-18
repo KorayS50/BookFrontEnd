@@ -9,11 +9,15 @@
     <style>
     </style>
     <script>
-        function reserveringenophalen() {
-            fetch("http://localhost:8082/alleReserveringen")
-                .then(a => a.json())
-                .then(b => console.log(b))
+        //function reserveringenophalen() {
+          //  fetch("http://localhost:8082/alleReserveringen")
+            //    .then(a => a.json())
+              //  .then(b => console.log(b))
                 
+        //}
+
+        function terugNaarLandingPage() {
+            window.location.href = 'Landingpage.html';
         }
 
         function mijnReserveringenOphalen() {
@@ -56,11 +60,12 @@
     <style></style>
 </head>
 
-<body>
+<body onload="mijnReserveringenOphalen()">
     <!--<button onclick="reserveringenophalen()">Titels ophalen</button>-->
+    <button onclick="terugNaarLandingPage()">Terug</button>
     <br>
     <br>
-    <button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>
+    <!--<button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>-->
     <br>
     <br>
     <div id="LijstTitel"></div>
