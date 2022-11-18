@@ -7,21 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #hiddenEmail {
-            visibility: hidden;
-        }
     </style>
     <script>
-        function reserveringenophalen() {
-            fetch("http://localhost:8082/alleReserveringen")
-                .then(a => a.json())
-                .then(b => console.log(b))
+        //function reserveringenophalen() {
+          //  fetch("http://localhost:8082/alleReserveringen")
+            //    .then(a => a.json())
+              //  .then(b => console.log(b))
                 
+        //}
+
+        function terugNaarLandingPage() {
+            window.location.href = 'Landingpage.html';
         }
 
         function mijnReserveringenOphalen() {
-            var emailadres = document.getElementById("hiddenEmail").innerHTML;
-            fetch("http://localhost:8082/mijnreserveringen/" + emailadres)
+            let token = localStorage.getItem('TOKEN')
+            //alert(token)
+            fetch("http://localhost:8082/mijnreserveringen/" + token) //, {
+            //method: 'GET',
+            //mode:"no-cors",
+            //headers: {
+                //'Content-Type': 'application/json',
+                //'toegangstoken': token
+            //}
+            //})
             .then(a => a.json())
             .then(b => reserveringenTonenOpScherm(b))
         }
@@ -29,28 +38,44 @@
             if (lijst.length > 0){
                 document.getElementById("LijstTitel").innerHTML = "Mijn reserveringen";
                 for(var x = 0; x < lijst.length; x++){
-                    document.getElementById("ReserveringenLijst").innerHTML += `<li>${lijst[x].gereserveerdOp}: ${lijst[x].titel.titelNaam} door ${lijst[x].titel.auteur}</li>`;
+                    document.getElementById("ReserveringenLijst").innerHTML += `<li>${lijst[x].gereserveerdOp}: ${lijst[x].titel.naam} door ${lijst[x].titel.auteur}</li>`;
                 }
             } else {
                 document.getElementById("LijstTitel").innerHTML = "Je hebt geen lopende reservingen.";
             }
         }
-
+        function titelsVoorNieuweReservering(){
+            fetch("http://localhost:8082/alleTitels")
+            .then(a => a.json())
+            .then(b => {
+                    for (var x = 0; x < b.length; x++) {
+                        document.getElementById("nieuweReserveringForm").innerHTML += `<input type="checkbox" id="check${x}" value= ${b[x].id}><label for="check${x}">${b[x].titelNaam}</label><br>`;
+                    }
+                    document.getElementById("nieuweReserveringForm").innerHTML += `<input type="submit" value="Reserveren">`;
+                    document.getElementById("nieuweReserveringForm").style.visibility = 'visible';
+                    document.getElementById("nieuweReserveringTitel").style.visibility = 'visible';
+                })
+        }
     </script>
     <style></style>
 </head>
 
-<body>
-    <button onclick="reserveringenophalen()">Titels ophalen</button>
+<body onload="mijnReserveringenOphalen()">
+    <!--<button onclick="reserveringenophalen()">Titels ophalen</button>-->
+    <button onclick="terugNaarLandingPage()">Terug</button>
     <br>
     <br>
-    <button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>
+    <!--<button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>-->
     <br>
     <br>
     <div id="LijstTitel"></div>
     <ul id="ReserveringenLijst">
     </ul>
-    <div id="hiddenEmail">ronkraaijenbeld@gmail.com</div>
+    <!--<button onclick="titelsVoorNieuweReservering()">Boek reserveren</button>-->
+    <br>
+    <br>
+    <!--<div id="nieuweReserveringTitel">Selecteer de boek(en) die je wilt reserveren:</div>-->
+
 
 </body>
 
