@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alle gebruikers</title>
 </head>
     <!-- INCLUDING JQUERY-->
     <script src=
@@ -13,13 +13,13 @@
     
 <body>
     <section>
-        <h1>Alle Gebruikers</h1>
+        <h1>Gebruiker management</h1>
   
         <!-- TABLE CONSTRUCTION-->
         <table id='table'>
             <!-- HEADING FORMATION -->
             <tr>
-                <th>GebruikersId</th>
+                <th>ID</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
                 <th>Emailadres</th>
@@ -44,7 +44,7 @@
                             gebruiker += '<tr>';
 
                             gebruiker += '<td>' + 
-                                value.gebruikerID + '</td>';
+                                value.id + '</td>';
   
                             gebruiker += '<td>' + 
                                 value.voornaam + '</td>';
@@ -71,6 +71,78 @@
                     });
                 });
             </script>
+        <!--Dropdown menu voor kiezen van CRUD optie gebruiker-->
+        <label for="CRUD-opties">Kies optie: </label>
+        <select name="CRUD-opties" id="CRUD-opties">
+            <option selected="true" disabled>Opties</option>
+            <option value="Delete">Verwijder Gebruiker</option>
+            <option value="Anonimiseer">Anonimiseer Gebruiker</option>
+            <option value="Update-admin">Wijzig admin status</option>
+            <option value="Update-email">Wijzig emailadres</option>
+            <option value="Update-voornaam">Wijzig voornaam</option>
+            <option value="Update-achternaam">Wijzig achternaam</option>
+            <option value="Update-wachtwoord">Wijzig wachtwoord</option>
+        </select>
+        <br>
+        <label for="Gebruiker-selectie">Kies gebruiker: </label>
+        <select name="Gebruiker-email" id="Gebruikersemail">
+        </select>
+        <script>
+            let dropdown = $('#Gebruikersemail');
+
+            dropdown.empty();
+
+            dropdown.append('<option selected="true" disabled>Kies gebruiker op email</option>');
+            dropdown.prop('selectedIndex', 0);
+
+            const url = 'http://localhost:8082/toonAlleGebruikers';
+
+            // Populate dropdown with list of gebruiker emailadressen
+            $.getJSON("http://localhost:8082/toonAlleGebruikers", 
+                            function (data) {
+                        var gebruiker = '';
+                        $.each(data, function (key, value) {
+                dropdown.append($('<option value='+ value.email +'>'+ value.email + '</option>'));
+                })
+            });
+            
+        function uitvoerenWijziging(){
+            var a = document.getElementById("Gebruikersemail");
+            var valuea = a.value
+            var b = document.getElementById("CRUD-opties");
+            var valueb = b.value
+            if(valueb == "Delete"){
+                
+                fetch("http://localhost:8082/verwijderGebruiker/"+valuea);
+                alert("Gebruiker met emailadres: " + valuea + " verwijderd")
+                window.location.href='alleGebruikers.html'
+            }
+            else if(valueb == "Anonimiseer"){
+                fetch("http://localhost:8082/anonimiseerGebruiker/"+valuea);
+                alert("Gebruiker met emailadres: " + valuea + " geanonimiseerd")
+                window.location.href='alleGebruikers.html'
+            }
+            else if(valueb == "Update-admin"){
+                //
+            }
+            else if(valueb == "Update-email"){
+                //
+            }
+            else if(valueb == "Update-voornaam"){
+                //
+            }
+            else if(valueb == "Update-achternaam"){
+                //
+            }
+            else if(valueb == "Update-wachtwoord"){
+                //
+            } else{
+                console.log("error in opties")
+            }
+        }
+        </script>
+        <br>
+        <button onclick=uitvoerenWijziging()>Wijzig gebruiker</button>
     </section>
 </body>
 </html>
