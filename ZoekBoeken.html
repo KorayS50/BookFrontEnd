@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    </style>
+    <script>
+        function ZoekBoek(){
+            var zoekInvoer = document.getElementById("ZoekVeld").value;
+            fetch("http://localhost:8082/zoekFunctie/" + zoekInvoer)
+            .then(a => a.json())
+            .then(b => {
+                console.log(b);
+                if (document.getElementById("zoekResultatenTabel").innerHTML.trim !== ``) {
+                    document.getElementById("zoekResultatenTabel").innerHTML = ``;
+                }
+                if (b.length == 0) {
+                    document.getElementById("zoekResultatenTabel").innerHTML += `Geen resultaten.`;
+                }
+                else {
+                    document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <th>Titel</th> <th>Auteur</th> <th>ISBN</th> <th></th> </tr>`;
+                    for (var x = 0; x < b.length; x++) {
+                        document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <td>${b[x].naam}</td> <td>${b[x].auteur}</td> <td id="isbn${x}">${b[x].isbn}</td> <td><button type="button" onclick="nieuweReservering(${x})">Reserveer</button></td> </tr>`;
+                    }
+                }
+
+            })
+        }
+
+        function nieuweReservering(x){
+            let q = "isbn" + x;
+            let isbn = document.getElementById(q).innerHTML;
+            let token = localStorage.getItem('TOKEN')
+            
+            let nieuweReserveringDto = {
+                isbn: isbn,
+                token: token
+            }
+
+            fetch("http://localhost:8082/nieuwereservering", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nieuweReserveringDto)
+            })
+            .then(a => a.json())
+            .then(b => {
+                if (b){
+                    alert('Reservering opgeslagen.');
+                } else if (!b){
+                    alert('Deze titel heb je al gereserveerd.');
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+</body>
+    <div id="search-container">
+        <input type="text" placeholder="Zoek boeken..." name="search" id="ZoekVeld">
+        <button type="button" onclick="ZoekBoek()">Zoek</button>
+
+    </div>
+    <table id="zoekResultatenTabel">
+        
+    </table>
+    
+</html>

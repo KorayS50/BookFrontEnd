@@ -9,6 +9,7 @@
 <script>
     function showProfileInfo(){
         let token = localStorage.getItem('TOKEN')
+        alert(token)
         fetch("http:///localhost:8082/profiel/" + token)
         .then(response => response.json())
         .then((response) =>{
