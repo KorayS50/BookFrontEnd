@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+          background-color: black;
+        }
+
+        .button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          padding: 10px 20px;
+          height: 100%;
+          width: 100px;
+          border: none;
+          outline: none;
+          border-radius: 4px;
+          background: #009926;
+          background: -webkit-linear-gradient(to right, #018d4b, #00e031, #006d36);
+          background: linear-gradient(to right, #00bd1f, #00af49, #00b90f);
+          color: #fff;
+          margin: 0 auto;
+        }
+
+        #search-container {
+            color: white;
+            text-align: center;
+            align-items: center;
+        }
+
+        #table-container {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        th, td {
+            width: 200px;
+        }
+
+        table, th, td {
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        table {
+            margin: 0 auto;
+            width: auto;
+        }
+
+    </style>
+
+    <script>
+
+        function ZoekBoek(){
+            var zoekInvoer = document.getElementById("ZoekVeld").value;
+            fetch("http://localhost:8082/zoekFunctie/" + zoekInvoer)
+            .then(a => a.json())
+            .then(b => {
+                console.log(b);
+                if (document.getElementById("zoekResultatenTabel").innerHTML.trim !== ``) {
+                    document.getElementById("zoekResultatenTabel").innerHTML = ``;
+                }
+                if (b.length == 0) {
+                    document.getElementById("zoekResultatenTabel").innerHTML += `Geen resultaten.`;
+                }
+                else {
+                    document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <th>Titel</th> <th>Auteur</th> <th>ISBN</th> <th></th> </tr>`;
+                    for (var x = 0; x < b.length; x++) {
+                        document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <td>${b[x].naam}</td> <td>${b[x].auteur}</td> <td id="isbn${x}">${b[x].isbn}</td> <td><button type="button" onclick="nieuweReservering(${x})" class="button">Reserveer</button></td> </tr>`;
+                    }
+                }
+
+            })
+        }
+
+        function nieuweReservering(x){
+            let q = "isbn" + x;
+            let isbn = document.getElementById(q).innerHTML;
+            let token = localStorage.getItem('TOKEN')
+            
+            let nieuweReserveringDto = {
+                isbn: isbn,
+                token: token
+            }
+
+            fetch("http://localhost:8082/nieuwereservering", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nieuweReserveringDto)
+            })
+            .then(a => a.json())
+            .then(b => {
+                if (b){
+                    alert('Reservering opgeslagen.');
+                } else if (!b){
+                    alert('Deze titel heb je al gereserveerd.');
+                }
+            })
+        }
+    
+        function terugNaarLandingPage() {
+            window.location.href = 'Landingpage.html';
+        }
+
+    </script>
+</head>
+<body>
+</body>
+    <button onclick="terugNaarLandingPage()" class="button" style="float: left">Terug</button>
+    <br>
+    <br>
+    <div id="search-container">
+        <input type="text" placeholder="Zoek boeken..." name="search" id="ZoekVeld" style="background-color: white; width: 17%"> 
+        <br>
+        <br>
+        <button type="button" onclick="ZoekBoek()" class="button">Zoek</button>
+    </div>
+    <br>
+    <br>
+    <div id="table-container">
+        <table id="zoekResultatenTabel">
+        </table>
+    </div>
+</html>

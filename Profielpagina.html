@@ -19,8 +19,15 @@
             document.getElementById('ID').innerHTML = 'ID: ' + r.id;
         })
     }
+
+    function terugNaarLandingPage() {
+        window.location.href = 'Landingpage.html';
+    }
 </script>
 <body onload="showProfileInfo()">
+    <button onclick="terugNaarLandingPage()">Terug</button>
+    <br>
+    <br>
     <h2>Profiel</h2>
     <div>
         <p id="voornaam"></p>
