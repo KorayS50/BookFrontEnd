@@ -94,7 +94,7 @@
                 <div class="gebruikerRegistratie">
                     <div class="cardHeader">
                         <h2>Registratie formulier</h2>
-                </div>
+                    </div>
                 Voornaam: <br><input type="text" id="voornaam" required>
                 <br/>
                 Achternaam: <br><input type="text" id="achternaam" required>
@@ -120,15 +120,6 @@
             navigatie.classList.toggle('active');
             main.classList.toggle('active');
         }
-    
-        let list = document.querySelectorAll('.navigatie li');
-        function activeLink(){
-            list.forEach((item) =>
-            item.classList.remove('hovered'));
-            item.classList.add('hovered');
-        }
-        list.forEach((item) =>
-        item.addEventListener('mouseover',activeLink))
     </script>
 </body>
 
