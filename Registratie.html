@@ -35,10 +35,7 @@
                 if (!antwoord.success) {
                     alert('Emailadres is al in gebruik');
                 } else {
-                    alert('Registratie voltooid, na sluiten van dit bericht wordt U over 3 seconden naar de inlog pagina geleid');
-                    var timer = setTimeout(function() {
-                    window.location.href='Admin.html';
-                    }, 3000);
+                    alert('Registratie voltooid');
                 }
             })
             .catch(error => {
@@ -107,8 +104,6 @@
                 Wachtwoord: <br><input type="password" id="wachtwoord" required>
                 <br/>
                 <input onclick="registreren()" type="button" id="registreer" value="registreer">
-                <br/>
-                (Na registratie wordt u terug geleid naar de loginpagina na 3 seconden)
                 </div>
             </div>
         </div>
