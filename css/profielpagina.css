@@ -1,0 +1,42 @@
+
+body{
+    font: 300 14px/18px Roboto
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu, sans-serif';
+}
+
+.container{
+    background-color: rgb(34, 172, 34);
+    width: 310px;
+    height: 300px;
+    margin: 5em auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.container h2{
+    margin: auto;
+    width: 35%;
+    display: block;
+    box-sizing: border-box;
+    background: none;
+    color: #ffffff;
+    margin-bottom: 30px;
+    padding: 10px;
+    height: 52px;
+    font-family: 'Ubuntu',sans-serif;
+    text-decoration-skip-ink: 0.2s ease;
+}
+.box p{
+    color: #ffffff;
+    text-indent: 10px;
+    font-family: 'Ubuntu, sans-serif';
+    padding: 10px;
+    margin: auto;
+    width: 35%;;
+}

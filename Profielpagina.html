@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/profielpagina.css">
 </head>
 <script>
     function showProfileInfo(){
@@ -30,16 +31,15 @@
         window.location.href = 'Landingpage.html';
     }
 </script>
-<body onload="showProfileInfo()">
-    <button onclick="terugNaarLandingPage()">Terug</button>
-    <br>
-    <br>
+<body>
+    <div class="container">
     <h2>Profiel</h2>
-    <div>
-        <p id="voornaam"></p>
-        <p id="achternaam"></p>
-        <p id="emailadres"></p>
-        <p id="ID"></p>
-      </div>
+    <div class="box">
+        <p id="voornaam">Test</p>
+        <p id="achternaam">Persoon</p>
+        <p id="emailadres">test@mail</p>
+        <p id="gebruikerID">Test50</p>
+    </div>
+    </div>
 </body>
 </html>
