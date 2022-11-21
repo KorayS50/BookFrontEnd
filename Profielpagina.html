@@ -10,15 +10,25 @@
 <script>
     function showProfileInfo(){
         let token = localStorage.getItem('TOKEN')
-        fetch("http:///localhost:8082/profiel/" + token)
+        fetch("http://localhost:8082/profiel", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'TOKEN' : token
+                }
+            })
         .then(response => response.json())
         .then((response) =>{
             const r = response;
             document.getElementById('voornaam').innerHTML =  'Voornaam: ' + r.voornaam;
             document.getElementById('achternaam').innerHTML = 'Achternaam: ' + r.achternaam;
             document.getElementById('emailadres').innerHTML = 'Emailadres: ' + r.email;
-            document.getElementById('gebruikerID').innerHTML = 'Gebruiker ID: ' + r.gebruikerID;
+            document.getElementById('ID').innerHTML = 'ID: ' + r.id;
         })
+    }
+
+    function terugNaarLandingPage() {
+        window.location.href = 'Landingpage.html';
     }
 </script>
 <body>

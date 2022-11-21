@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registratie formulier</title>
+    <link rel="stylesheet" href="css/registratie.css">
     <script>
         
         function registreren() {
@@ -34,10 +35,7 @@
                 if (!antwoord.success) {
                     alert('Emailadres is al in gebruik');
                 } else {
-                    alert('Registratie voltooid, na sluiten van dit bericht wordt U over 3 seconden naar de inlog pagina geleid');
-                    var timer = setTimeout(function() {
-                    window.location.href='Loginpagina.html';
-                    }, 3000);
+                    alert('Registratie voltooid');
                 }
             })
             .catch(error => {
@@ -47,23 +45,91 @@
         }
 
     </script>
-    <style></style>
 </head>
 
 <body>
-    <h1>Registratie formulier</h1>
-        Voornaam: <br><input type="text" id="voornaam" required>
-        <br>
-        Achternaam: <br><input type="text" id="achternaam" required>
-        <br>
-        Email adres: <br><input type="text" id="emailadres" required>
-        <br>
-        Wachtwoord: <br><input type="password" id="wachtwoord" required>
-        <br>
-        <input onclick="registreren()" type="button" id="registreer" value="registreer">
-    <br>
-    (Na registratie wordt u terug geleid naar de loginpagina na 3 seconden)
+    <div class="container">
+        <div class="navigatie">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
+                        <span class="title">WT Library App</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Admin.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="AlleGebruikers.html">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Trainees</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Registratie.html">
+                        <span class="icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+                        <span class="title">Nieuwe gebruiker aanmaken</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+        </div>
+
+        <!-- Dit aanpassen?? -->
+        <div class="user">
+                </div>
+            </div>
+
+        <div class="cardBox">
+            <div class="details">
+                <div class="gebruikerRegistratie">
+                    <div class="cardHeader">
+                        <h2>Registratie formulier</h2>
+                </div>
+                Voornaam: <br><input type="text" id="voornaam" required>
+                <br/>
+                Achternaam: <br><input type="text" id="achternaam" required>
+                <br/>
+                Email adres: <br><input type="text" id="emailadres" required>
+                <br/>
+                Wachtwoord: <br><input type="password" id="wachtwoord" required>
+                <br/>
+                <input onclick="registreren()" type="button" id="registreer" value="registreer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let navigatie = document.querySelector('.navigatie');
+        let main = document.querySelector('.main');
+    
+        toggle.onclick = function(){
+            navigatie.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+    
+        let list = document.querySelectorAll('.navigatie li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            item.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink))
+    </script>
 </body>
 
 </html>
