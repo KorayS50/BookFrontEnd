@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profiel pagina</title>
     <link rel="stylesheet" href="css/profielpagina.css">
 </head>
 <script>
@@ -23,7 +23,7 @@
             document.getElementById('voornaam').innerHTML =  'Voornaam: ' + r.voornaam;
             document.getElementById('achternaam').innerHTML = 'Achternaam: ' + r.achternaam;
             document.getElementById('emailadres').innerHTML = 'Emailadres: ' + r.email;
-            document.getElementById('ID').innerHTML = 'ID: ' + r.id;
+            document.getElementById('gebruikerID').innerHTML = 'ID: ' + r.id;
         })
     }
 
@@ -31,14 +31,14 @@
         window.location.href = 'Landingpage.html';
     }
 </script>
-<body>
+<body onload="showProfileInfo()">
     <div class="container">
     <h2>Profiel</h2>
     <div class="box">
-        <p id="voornaam">Test</p>
-        <p id="achternaam">Persoon</p>
-        <p id="emailadres">test@mail</p>
-        <p id="gebruikerID">Test50</p>
+        <p id="voornaam"></p>
+        <p id="achternaam"></p>
+        <p id="emailadres"></p>
+        <p id="gebruikerID"></p>
     </div>
     </div>
 </body>

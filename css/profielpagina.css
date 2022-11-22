@@ -26,17 +26,21 @@ body{
     box-sizing: border-box;
     background: none;
     color: #ffffff;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 5px;
     padding: 10px;
     height: 52px;
     font-family: 'Ubuntu',sans-serif;
     text-decoration-skip-ink: 0.2s ease;
 }
 .box p{
-    color: #ffffff;
+    background-color: #ffffff;
+    color: rgb(34, 172, 34);
     text-indent: 10px;
     font-family: 'Ubuntu, sans-serif';
+    font-size: large;
     padding: 10px;
-    margin: auto;
-    width: 35%;;
+    margin: 10px;
+    width: 92%;
+    border-radius: 20px;
 }
