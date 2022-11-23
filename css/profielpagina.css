@@ -217,7 +217,8 @@
     font-family: 'Ubuntu, sans-serif';
     font-size: large;
     padding: 10px;
-    margin: auto;
-    width: 35%;;
+    margin: 10px;
+    width: 92%;
+    border-radius: 20px;
 }
 
