@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toevoegen van label, boek of exemplaar</title>
+    <link rel="stylesheet" href="css/registratie.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="navigatie">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
+                        <span class="title">WT Library App</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Admin.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="AlleGebruikers.html">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Trainees</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Registratie.html">
+                        <span class="icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+                        <span class="title">Nieuwe gebruiker aanmaken</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+        </div>
+
+        <!-- Dit aanpassen?? -->
+        <div class="user">
+                </div>
+            </div>
+
+        <div class="cardBox">
+            <div class="details">
+                <div class="toevoegenLabel">
+                    <div class="cardHeader">
+                        <h2>Toevoegen Label</h2>
+                    </div>
+                    Label titel: <br><input type="text" id="labelTitel" required>
+                    <br/>
+                    <input onclick="toevoegenLabel()" type="button" id="labelAanmaken" value="labelAanmaken">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toevoegenLabel(){
+            let labelNaam = document.getElementById("labelTitel").value;
+
+            let labelDto = {
+                naam: labelNaam
+            }
+
+            fetch("http://localhost:8082/labelToevoegen", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(labelDto)
+            })
+            .then(response => response.json())
+            .then(antwoord => {
+
+                if (!antwoord.success) {
+                    alert('Label bestaat al');
+                } else {
+                    alert('Label aangemaakt');
+                }
+            })
+            .catch(error => {
+                alert('Er is iets fouts gegaan');
+            });
+
+        }
+
+        function toevoegenBoek(){
+            
+        }
+    </script>
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let navigatie = document.querySelector('.navigatie');
+        let main = document.querySelector('.main');
+    
+        toggle.onclick = function(){
+            navigatie.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
