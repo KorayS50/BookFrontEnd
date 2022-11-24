@@ -5,20 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reservering.css" />
     <title>Document</title>
+
     <style>
 
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          -webkit-font-smoothing: antialiased;
-          background-color: black;
-          color: #fff;
-          font-family: 'Kumbh Sans', sans-serif;
-        }
-
-        .button {
+        .button1 {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -90,8 +82,28 @@
 </head>
 
 <body onload="mijnReserveringenOphalen()">
+    <nav class="navbar">
+        <div class="navbar__container">
+          <a href="#home" id="navbar__logo">WT Library</a>
+          <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span> <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="navbar__menu">
+            <li class="navbar__item">
+              <a href="Landingpage.html" class="navbar__links" id="home-page">Home</a>
+            </li>
+            <li class="navbar__btn">
+              <a href="Profielpagina.html" class="button" id="profiel-page">Profiel</a>
+            </li>
+            <li class="navbar__btn">
+              <a href="Reservering.html" class="button" id="reservering-page">Reserveringen</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     <!--<button onclick="reserveringenophalen()">Titels ophalen</button>-->
-    <button onclick="terugNaarLandingPage()" class="button" style="float: left">Terug</button>
+    <button onclick="terugNaarLandingPage()" class="button1" style="float: left">Terug</button>
     <br>
     <br>
     <!--<button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>-->
