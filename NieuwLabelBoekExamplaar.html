@@ -1,52 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registratie formulier</title>
-    <link rel="stylesheet" href="css/registratie.css">
-    <script>
-        
-        function registreren() {
-            let voornaam = document.getElementById("voornaam").value;
-            let achternaam = document.getElementById("achternaam").value;
-            let emailadres = document.getElementById("emailadres").value;
-            let wachtwoord = document.getElementById("wachtwoord").value;
-
-            let RegistratieDto = {
-                voornaam: voornaam,
-                achternaam: achternaam,
-                email: emailadres,
-                password: wachtwoord
-            }
-
-            fetch("http://localhost:8082/registratie", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(RegistratieDto)
-            })
-            .then(response => response.json())
-            .then(antwoord => {
-                
-                if (!antwoord.success) {
-                    alert('Emailadres is al in gebruik');
-                } else {
-                    alert('Registratie voltooid');
-                }
-            })
-            .catch(error => {
-                alert('Er is iets fouts gegaan');
-            });
-            
-        }
-
-    </script>
+    <title>Toevoegen van label, boek of exemplaar</title>
+    <link rel="stylesheet" href="css/NieuwLabelBoekExamplaar.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
 </head>
-
 <body>
     <div class="container">
         <div class="navigatie">
@@ -97,26 +60,52 @@
 
         <div class="cardBox">
             <div class="details">
-                <div class="gebruikerRegistratie">
+                <div class="toevoegenLabel">
                     <div class="cardHeader">
-                        <h2>Registratie formulier</h2>
+                        <h2>Toevoegen Label</h2>
                     </div>
-                Voornaam: <br><input type="text" id="voornaam" required>
-                <br/>
-                Achternaam: <br><input type="text" id="achternaam" required>
-                <br/>
-                Email adres: <br><input type="text" id="emailadres" required>
-                <br/>
-                Wachtwoord: <br><input type="password" id="wachtwoord" required>
-                <br/>
-                <input onclick="registreren()" type="button" id="registreer" value="registreer">
+                    Label titel: <br><input type="text" id="labelTitel" required>
+                    <br/>
+                    <input onclick="toevoegenLabel()" type="button" id="labelAanmaken" value="labelAanmaken">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        function toevoegenLabel(){
+            let labelNaam = document.getElementById("labelTitel").value;
 
+            let labelDto = {
+                naam: labelNaam
+            }
+
+            fetch("http://localhost:8082/labelToevoegen", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(labelDto)
+            })
+            .then(response => response.json())
+            .then(antwoord => {
+
+                if (!antwoord.success) {
+                    alert('Label bestaat al');
+                } else {
+                    alert('Label aangemaakt');
+                }
+            })
+            .catch(error => {
+                alert('Er is iets fouts gegaan');
+            });
+
+        }
+
+        function toevoegenBoek(){
+            
+        }
+    </script>
     <script>
         let toggle = document.querySelector('.toggle');
         let navigatie = document.querySelector('.navigatie');
@@ -128,5 +117,4 @@
         }
     </script>
 </body>
-
 </html>

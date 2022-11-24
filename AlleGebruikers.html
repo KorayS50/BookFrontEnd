@@ -40,6 +40,12 @@
                         <span class="title">Nieuwe gebruiker aanmaken</span>
                     </a>
                 </li>
+                <li>
+                    <a href="NieuwLabelBoekExamplaar.html">
+                        <span class="icon"><ion-icon name="bookmark-outline"></ion-icon></span>
+                        <span class="title">Nieuw label aanmaken</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -207,15 +213,6 @@
             navigatie.classList.toggle('active');
             main.classList.toggle('active');
         }
-
-        let list = document.querySelectorAll('.navigatie li');
-        function activeLink(){
-            list.forEach((item) =>
-            item.classList.remove('hovered'));
-            item.classList.add('hovered');
-        }
-        list.forEach((item) =>
-        item.addEventListener('mouseover',activeLink))
     </script>
 </body>
 </html>
