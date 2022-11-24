@@ -13,6 +13,8 @@
           box-sizing: border-box;
           -webkit-font-smoothing: antialiased;
           background-color: black;
+          font-family: 'Kumbh Sans', sans-serif;
+          color: #fff;
         }
 
         .button {
@@ -29,8 +31,8 @@
           background: #009926;
           background: -webkit-linear-gradient(to right, #018d4b, #00e031, #006d36);
           background: linear-gradient(to right, #00bd1f, #00af49, #00b90f);
-          color: #fff;
           margin: 0 auto;
+          cursor: pointer;
         }
 
         #search-container {
@@ -80,7 +82,7 @@
                     document.getElementById("zoekResultatenTabel").innerHTML += `Geen resultaten.`;
                 }
                 else {
-                    document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <th>Titel</th> <th>Auteur</th> <th>ISBN</th> <th></th> </tr>`;
+                    document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <th><h3>Titel</h3></th> <th><h3>Auteur</h3></th> <th><h3>ISBN</h3/th> <th></th> </tr>`;
                     for (var x = 0; x < b.length; x++) {
                         document.getElementById("zoekResultatenTabel").innerHTML += `<tr> <td>${b[x].naam}</td> <td>${b[x].auteur}</td> <td id="isbn${x}">${b[x].isbn}</td> <td><button type="button" onclick="nieuweReservering(${x})" class="button">Reserveer</button></td> </tr>`;
                     }
@@ -128,7 +130,7 @@
     <br>
     <br>
     <div id="search-container">
-        <input type="text" placeholder="Zoek boeken..." name="search" id="ZoekVeld" style="background-color: white; width: 17%"> 
+        <input type="text" placeholder="Zoek boeken..." name="search" id="ZoekVeld" style="background-color: white; width: 17%; color: black"> 
         <br>
         <br>
         <button type="button" onclick="ZoekBoek()" class="button">Zoek</button>
