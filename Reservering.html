@@ -7,6 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+          background-color: black;
+          color: #fff;
+          font-family: 'Kumbh Sans', sans-serif;
+        }
+
+        .button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          padding: 10px 20px;
+          height: 100%;
+          width: 100px;
+          border: none;
+          outline: none;
+          border-radius: 4px;
+          background: #009926;
+          background: -webkit-linear-gradient(to right, #018d4b, #00e031, #006d36);
+          background: linear-gradient(to right, #00bd1f, #00af49, #00b90f);
+          color: #fff;
+          margin: 0 auto;
+        }
+
     </style>
     <script>
         //function reserveringenophalen() {
@@ -36,7 +65,7 @@
         }
         function reserveringenTonenOpScherm(lijst){
             if (lijst.length > 0){
-                document.getElementById("LijstTitel").innerHTML = "Mijn reserveringen";
+                document.getElementById("LijstTitel").innerHTML = "<h3>Mijn reserveringen</h3>";
                 for(var x = 0; x < lijst.length; x++){
                     document.getElementById("ReserveringenLijst").innerHTML += `<li>${lijst[x].gereserveerdOp}: ${lijst[x].titel.naam} door ${lijst[x].titel.auteur}</li>`;
                 }
@@ -62,13 +91,14 @@
 
 <body onload="mijnReserveringenOphalen()">
     <!--<button onclick="reserveringenophalen()">Titels ophalen</button>-->
-    <button onclick="terugNaarLandingPage()">Terug</button>
+    <button onclick="terugNaarLandingPage()" class="button" style="float: left">Terug</button>
     <br>
     <br>
     <!--<button onclick="mijnReserveringenOphalen()">Mijn Reserveringen</button>-->
     <br>
     <br>
     <div id="LijstTitel"></div>
+    <br>
     <ul id="ReserveringenLijst">
     </ul>
     <!--<button onclick="titelsVoorNieuweReservering()">Boek reserveren</button>-->
