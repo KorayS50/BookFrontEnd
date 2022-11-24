@@ -31,7 +31,7 @@
                 <li>
                     <a href="AlleGebruikers.html">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="title">Trainees</span>
+                        <span class="title">Gebruiker management</span>
                     </a>
                 </li>
                 <li>
@@ -128,13 +128,12 @@
                 <label for="CRUD-opties">Kies optie: </label>
                 <select name="CRUD-opties" id="CRUD-opties">
                     <option selected="true" disabled>Opties</option>
-                    <option value="Delete">Verwijder Gebruiker</option>
-                    <option value="Anonimiseer">Anonimiseer Gebruiker</option>
-                    <option value="Update-admin">Wijzig admin status</option>
+                    <option value="UitdienstZetten">Gebruiker uit dienst zetten</option>
+                    <!-- <option value="Update-admin">Wijzig admin status</option>
                     <option value="Update-email">Wijzig emailadres</option>
                     <option value="Update-voornaam">Wijzig voornaam</option>
                     <option value="Update-achternaam">Wijzig achternaam</option>
-                    <option value="Update-wachtwoord">Wijzig wachtwoord</option>
+                    <option value="Update-wachtwoord">Wijzig wachtwoord</option> -->
                 </select>
                 <br>
                 <label for="Gebruiker-selectie">Kies gebruiker: </label>
@@ -164,15 +163,9 @@
                     var valuea = a.value
                     var b = document.getElementById("CRUD-opties");
                     var valueb = b.value
-                    if(valueb == "Delete"){
-                        
-                        fetch("http://localhost:8082/verwijderGebruiker/"+valuea);
-                        alert("Gebruiker met emailadres: " + valuea + " verwijderd")
-                        window.location.href='alleGebruikers.html'
-                    }
-                    else if(valueb == "Anonimiseer"){
-                        fetch("http://localhost:8082/anonimiseerGebruiker/"+valuea);
-                        alert("Gebruiker met emailadres: " + valuea + " geanonimiseerd")
+                    if(valueb == "UitdienstZetten"){
+                        fetch("http://localhost:8082/zetGebruikerUitDienst/"+valuea);
+                        alert("Gebruiker met emailadres: " + valuea + " is uit dienst gezet")
                         window.location.href='alleGebruikers.html'
                     }
                     else if(valueb == "Update-admin"){
